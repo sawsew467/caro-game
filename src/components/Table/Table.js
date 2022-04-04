@@ -226,29 +226,69 @@ function Table(props) {
         newTable[i][j].status === "player1"
       ) {
         newTable[i][j].check = true;
-        if (newTable[i - 1][j].check === true) {
-          newTable[i][j].N1 = newTable[i - 1][j].N1 + 1;
+        if (i > 1) {
+          if (
+            newTable[i - 1][j].check === true &&
+            newTable[i - 1][j].status === "player1"
+          ) {
+            newTable[i][j].N1 = newTable[i - 1][j].N1 + 1;
+          }
         }
-        if (newTable[i - 1][j + 1].check === true) {
-          newTable[i][j].NE1 = newTable[i - 1][j + 1].NE1 + 1;
+        if (i > 1 && j < 9) {
+          if (
+            newTable[i - 1][j + 1].check === true &&
+            newTable[i - 1][j + 1].status === "player1"
+          ) {
+            newTable[i][j].NE1 = newTable[i - 1][j + 1].NE1 + 1;
+          }
         }
-        if (newTable[i][j + 1].check === true) {
-          newTable[i][j].E1 = newTable[i][j + 1].E1 + 1;
+        if (j < 9) {
+          if (
+            newTable[i][j + 1].check === true &&
+            newTable[i][j + 1].status === "player1"
+          ) {
+            newTable[i][j].E1 = newTable[i][j + 1].E1 + 1;
+          }
         }
-        if (newTable[i + 1][j].check === true) {
-          newTable[i][j].SE1 = newTable[i + 1][j].SE1 + 1;
+        if (j < 9 && i < 10) {
+          if (
+            newTable[i + 1][j + 1].check === true &&
+            newTable[i + 1][j + 1].status === "player1"
+          ) {
+            newTable[i][j].SE1 = newTable[i + 1][j + 1].SE1 + 1;
+          }
         }
-        if (newTable[i + 1][j].check === true) {
-          newTable[i][j].S1 = newTable[i + 1][j].S1 + 1;
+        if (i < 10) {
+          if (
+            newTable[i + 1][j].check === true &&
+            newTable[i + 1][j].status === "player1"
+          ) {
+            newTable[i][j].S1 = newTable[i + 1][j].S1 + 1;
+          }
         }
-        if (newTable[i - 1][j - 1].check === true) {
-          newTable[i][j].SW1 = newTable[i - 1][j - 1].SW1 + 1;
+        if (j > 0 && i < 10) {
+          if (
+            newTable[i + 1][j - 1].check === true &&
+            newTable[i + 1][j - 1].status === "player1"
+          ) {
+            newTable[i][j].SW1 = newTable[i - 1][j - 1].SW1 + 1;
+          }
         }
-        if (newTable[i][j - 1].check === true) {
-          newTable[i][j].W1 = newTable[i][j - 1].W1 + 1;
+        if (j > 0) {
+          if (
+            newTable[i][j - 1].check === true &&
+            newTable[i][j - 1].status === "player1"
+          ) {
+            newTable[i][j].W1 = newTable[i][j - 1].W1 + 1;
+          }
         }
-        if (newTable[i - 1][j - 1].check === true) {
-          newTable[i][j].NW1 = newTable[i - 1][j - 1].NW1 + 1;
+        if (j > 0 && i > 1) {
+          if (
+            newTable[i - 1][j - 1].check === true &&
+            newTable[i - 1][j - 1].status === "player1"
+          ) {
+            newTable[i][j].NW1 = newTable[i - 1][j - 1].NW1 + 1;
+          }
         }
       }
       if (
@@ -273,29 +313,69 @@ function Table(props) {
         newTable[i][j].status === "player2"
       ) {
         newTable[i][j].check = true;
-        if (newTable[i - 1][j].check === true) {
-          newTable[i][j].N2 = newTable[i - 1][j].N2 + 1;
+        if (i > 1) {
+          if (
+            newTable[i - 1][j].check === true &&
+            newTable[i - 1][j].status === "player2"
+          ) {
+            newTable[i][j].N2 = newTable[i - 1][j].N2 + 1;
+          }
         }
-        if (newTable[i - 1][j + 1].check === true) {
-          newTable[i][j].NE2 = newTable[i - 1][j + 1].NE2 + 1;
+        if (i > 1 && j < 9) {
+          if (
+            newTable[i - 1][j + 1].check === true &&
+            newTable[i - 1][j + 1].status === "player2"
+          ) {
+            newTable[i][j].NE2 = newTable[i - 1][j + 1].NE2 + 1;
+          }
         }
-        if (newTable[i][j + 1].check === true) {
-          newTable[i][j].E2 = newTable[i][j + 1].E2 + 1;
+        if (j < 9) {
+          if (
+            newTable[i][j + 1].check === true &&
+            newTable[i][j + 1].status === "player2"
+          ) {
+            newTable[i][j].E2 = newTable[i][j + 1].E2 + 1;
+          }
         }
-        if (newTable[i + 1][j].check === true) {
-          newTable[i][j].SE2 = newTable[i + 1][j].SE2 + 1;
+        if (j < 9 && i < 10) {
+          if (
+            newTable[i + 1][j + 1].check === true &&
+            newTable[i + 1][j + 1].status === "player2"
+          ) {
+            newTable[i][j].SE2 = newTable[i + 1][j + 1].SE2 + 1;
+          }
         }
-        if (newTable[i + 1][j].check === true) {
-          newTable[i][j].S2 = newTable[i + 1][j].S2 + 1;
+        if (i < 10) {
+          if (
+            newTable[i + 1][j].check === true &&
+            newTable[i + 1][j].status === "player2"
+          ) {
+            newTable[i][j].S2 = newTable[i + 1][j].S2 + 1;
+          }
         }
-        if (newTable[i - 1][j - 1].check === true) {
-          newTable[i][j].SW2 = newTable[i - 1][j - 1].SW2 + 1;
+        if (j > 0 && i < 10) {
+          if (
+            newTable[i + 1][j - 1].check === true &&
+            newTable[i + 1][j - 1].status === "player2"
+          ) {
+            newTable[i][j].SW2 = newTable[i - 1][j - 1].SW2 + 1;
+          }
         }
-        if (newTable[i][j - 1].check === true) {
-          newTable[i][j].W2 = newTable[i][j - 1].W2 + 1;
+        if (j > 0) {
+          if (
+            newTable[i][j - 1].check === true &&
+            newTable[i][j - 1].status === "player2"
+          ) {
+            newTable[i][j].W2 = newTable[i][j - 1].W2 + 1;
+          }
         }
-        if (newTable[i - 1][j - 1].check === true) {
-          newTable[i][j].NW2 = newTable[i - 1][j - 1].NW2 + 1;
+        if (j > 0 && i > 1) {
+          if (
+            newTable[i - 1][j - 1].check === true &&
+            newTable[i - 1][j - 1].status === "player2"
+          ) {
+            newTable[i][j].NW2 = newTable[i - 1][j - 1].NW2 + 1;
+          }
         }
       }
       if (

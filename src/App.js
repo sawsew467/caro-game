@@ -32,10 +32,6 @@ function App() {
   const callbackTime = (childData) => {
     setTime(childData);
   };
-  // const [win, setWin] = useState(false);
-  // const handleClick = () => {
-  //   setWin(!win);
-  // };
   const win = winer !== "none" ? true : false;
   return (
     <div className="wrapper">
@@ -47,10 +43,6 @@ function App() {
           {win && (
             <Scoreboard timeData={time} historyData={history} winer={winer} />
           )}
-          {/* {setTimeout(() => {
-            return win && <Scoreboard timeData={time} historyData={history} />;
-          }, 1000)} */}
-          {/* <button onClick={handleClick}>change</button> */}
         </div>
         <div className="middle-side ">
           <Table
