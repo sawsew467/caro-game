@@ -1,0 +1,22 @@
+.info__container {
+  margin-top: 5.4rem;
+  width: 80%;
+  font-size: 2.4rem;
+  background-color: #6ecb27;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border: 5px solid #000;
+  box-shadow: 0px 0px 20px #545464;
+}
+
+.info__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info__name {
+  max-width: 15vw;
+}
+.info__sign {
+}
