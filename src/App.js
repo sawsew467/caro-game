@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Intro from "./components/Intro/Intro.js";
 import Timer from "./components/Timer/Timer.js";
 import Info from "./components/Info/Info.js";
@@ -22,11 +22,16 @@ function App() {
   const callbackWiner = (childData) => {
     setWiner(childData);
   };
-  if (winer === "player 1") {
-    setWiner(players.name1);
-  } else if (winer === "player 2") {
-    setWiner(players.name2);
-  }
+  
+  // Fix: Move winner logic to useEffect to prevent infinite re-renders
+  useEffect(() => {
+    if (winer === "player 1") {
+      setWiner(players.name1);
+    } else if (winer === "player 2") {
+      setWiner(players.name2);
+    }
+  }, [winer, players.name1, players.name2]);
+  
   console.log("winer: ", winer);
   const [time, setTime] = useState({});
   const callbackTime = (childData) => {

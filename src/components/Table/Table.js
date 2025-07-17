@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Table.css";
 
 function Table(props) {
@@ -43,53 +43,63 @@ function Table(props) {
   const sendWiner = (winer) => {
     props.winerCallback(winer);
   };
+  
+  // Fix: Only send history when it changes
+  useEffect(() => {
+    sendHistory();
+  }, [historyList]);
+  
   // console.log(playerTurn);
   const handleClick = (x, y) => {
     if (table[10 * (x - 1) + y].status === "none") {
-      if (playerTurn === players.player1) {
-        setPlayerTurn(players.player2);
+      if (playerTurn === "player 1") {
+        setPlayerTurn("player 2");
       } else {
-        setPlayerTurn(players.player1);
+        setPlayerTurn("player 1");
       }
 
-      setHistoryList((prev) => {
-        const newHistoryList = [
-          ...prev,
-          {
-            turn:
-              playerTurn === players.player1 ? players.name1 : players.name2,
+              // Update table state properly
+        setTable(prevTable => {
+          const newTable = [...prevTable];
+          newTable[10 * (x - 1) + y] = {
             x: x,
             y: y,
-          },
-        ];
+            status: playerTurn.split(" ").join(""),
+            check: false,
+            N1: 0,
+            N2: 0,
+            NE1: 0,
+            NE2: 0,
+            E1: 0,
+            E2: 0,
+            SE1: 0,
+            SE2: 0,
+            S1: 0,
+            S2: 0,
+            SW1: 0,
+            SW2: 0,
+            W1: 0,
+            W2: 0,
+            NW1: 0,
+            NW2: 0,
+          };
+          return newTable;
+        });
 
-        table[10 * (x - 1) + y] = {
-          x: x,
-          y: y,
-          status: playerTurn.split(" ").join(""),
-          check: false,
-          N1: 0,
-          N2: 0,
-          NE1: 0,
-          NE2: 0,
-          E1: 0,
-          E2: 0,
-          SE1: 0,
-          SE2: 0,
-          S1: 0,
-          S2: 0,
-          SW1: 0,
-          SW2: 0,
-          W1: 0,
-          W2: 0,
-          NW1: 0,
-          NW2: 0,
-        };
-        return newHistoryList;
-      });
+        setHistoryList((prev) => {
+          const newHistoryList = [
+            ...prev,
+            {
+              turn:
+                playerTurn === "player 1" ? players.name1 : players.name2,
+              x: x,
+              y: y,
+            },
+          ];
+          return newHistoryList;
+        });
     }
   };
-  sendHistory();
   // console.log(table);
   //convert to 2D array
   const convertTable = () => {
@@ -271,7 +281,7 @@ function Table(props) {
             newTable[i + 1][j - 1].check === true &&
             newTable[i + 1][j - 1].status === "player1"
           ) {
-            newTable[i][j].SW1 = newTable[i - 1][j - 1].SW1 + 1;
+            newTable[i][j].SW1 = newTable[i + 1][j - 1].SW1 + 1;
           }
         }
         if (j > 0) {
@@ -358,7 +368,7 @@ function Table(props) {
             newTable[i + 1][j - 1].check === true &&
             newTable[i + 1][j - 1].status === "player2"
           ) {
-            newTable[i][j].SW2 = newTable[i - 1][j - 1].SW2 + 1;
+            newTable[i][j].SW2 = newTable[i + 1][j - 1].SW2 + 1;
           }
         }
         if (j > 0) {
